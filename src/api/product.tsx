@@ -1,5 +1,6 @@
 import instance from "./instance";
 import { IProduct } from "../types/products";
+
 const getAllProduct = () => {
     return instance.get('/products');
 }

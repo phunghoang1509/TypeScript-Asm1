@@ -3,16 +3,17 @@ import { useForm, SubmitHandler } from 'react-hook-form' //import useForm hook
 import { IProduct } from '../../types/products';
 import { Button, Form, Input, Modal, Upload } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
+import { useNavigate } from 'react-router-dom';
 import type { RcFile, UploadProps } from 'antd/es/upload';
 import type { UploadFile } from 'antd/es/upload/interface';
 interface IProps {
     onAdd: (product: IProduct) => void
 }
-interface IFormInput {
-    id: number,
-    name: string,
-    price: number
-}
+// interface IFormInput {
+//     id: number,
+//     name: string,
+//     price: number
+// }
 
 const getBase64 = (file: RcFile): Promise<string> =>
     new Promise((resolve, reject) => {
@@ -22,16 +23,19 @@ const getBase64 = (file: RcFile): Promise<string> =>
         reader.onerror = (error) => reject(error);
     });
 const AddProductPage = (props: IProps) => {
+    const navigate = useNavigate()
     const onFinish = (values: any) => {
         const newProduct = {
             id: values.id,
             name: values.name,
             price: values.price,
-            image: values.image.file.name
+            image: values.image.file.name,
+            desc: values.desc
         }
         console.log(values.image.file.name);
 
         props.onAdd(newProduct);
+        navigate('/admin/products')
     };
 
     const onFinishFailed = (errorInfo: any) => {
@@ -100,7 +104,6 @@ const AddProductPage = (props: IProps) => {
                     rules={[{ required: true, message: 'Please input your password!' }]}
                 >
                     <Upload
-                        // action="http://localhost:3000/products"
                         listType="picture-card"
                         fileList={fileList}
                         onPreview={handlePreview}
@@ -108,9 +111,14 @@ const AddProductPage = (props: IProps) => {
                     >
                         {fileList.length >= 8 ? null : uploadButton}
                     </Upload>
-                    {/* <Modal open={previewOpen} title={previewTitle} footer={null} onCancel={handleCancel}>
-                        <img alt="example" style={{ width: '100%' }} src={previewImage} />
-                    </Modal> */}
+                  
+                </Form.Item>
+                <Form.Item
+                    label="Product Description"
+                    name="desc"
+                    rules={[{ required: true, message: 'Please input your Description!' }]}
+                >
+                    <Input />
                 </Form.Item>
 
                 <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
@@ -119,13 +127,6 @@ const AddProductPage = (props: IProps) => {
                     </Button>
                 </Form.Item>
             </Form>
-
-
-            {/* <form action="" onSubmit={handleSubmit(onHandleSubmit)}>
-                <input type="text" {...register("name")} />
-                <input type="number" {...register("price")} />
-                <button type="submit">Add New Product</button>
-            </form> */}
         </div>
     )
 }

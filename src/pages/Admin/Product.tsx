@@ -4,6 +4,7 @@ import type { ColumnsType } from 'antd/es/table';
 import { IProduct } from '../../types/products';
 import { Link } from 'react-router-dom'
 
+
 interface DataType {
     key: string | number;
     id: number;
@@ -51,6 +52,7 @@ const ProductManagementPage = (props: IProps) => {
                 <Space size="middle">
                     <Button type="primary" style={{ backgroundColor: 'red' }} onClick={() => removeProduct(record.id)}>Remove</Button>
                     <Button type="primary" ><Link to={`/admin/products/${record.id}/update`}>Update</Link></Button>
+                   
                 </Space>
             ),
         },
@@ -65,7 +67,8 @@ const ProductManagementPage = (props: IProps) => {
 
     return (
         <div>
-            <Button type='primary'><Link to={'/admin/products/add'}>Add New Product</Link></Button>
+            <h1>ProductManagement Page</h1>
+            <Button type='primary'><Link to={'/admin/products/add'}>Add Product</Link></Button>
             <Table columns={columns} dataSource={data} pagination={{ pageSize: 5 }} />
         </div>
     )

@@ -3,7 +3,8 @@
     {
       "id": 1,
       "name": "Product 1",
-      "price": 100
+      "price": 100,
+      "image": ""
     },
     {
       "id": 2,
@@ -16,29 +17,39 @@
       "id": 3
     },
     {
-      "name": "abcd",
-      "price": "200",
-      "id": 6,
-      "categoryId": 1
+      "name": "product new 1",
+      "price": "999",
+      "image": "291225933_163215809574207_9163784443595711574_n.jpg",
+      "desc": "aaaaa",
+      "id": 9
     },
     {
-      "name": "abcd",
-      "price": "500",
-      "image": "DSC_1184.jpg",
-      "id": 7
+      "name": "motor",
+      "price": "100",
+      "image": "z4103699955838_aceeb20369f7d2a49633c2f3731ab389_auto_x2_auto_x2_colored_toned_light_ai.jpg",
+      "desc": "54",
+      "id": 10
     },
     {
-      "id": 8
+      "name": "Product new 2",
+      "price": "300",
+      "image": "293059500_396850132302358_1435904714174767646_n.png",
+      "desc": "Computer",
+      "id": 11
     }
   ],
   "categories": [
     {
       "id": 1,
-      "name": "Category 1"
+      "name": "Category 1 new"
     },
     {
       "id": 2,
       "name": "Category 2"
+    },
+    {
+      "id": 3,
+      "name": "100"
     }
   ]
 }

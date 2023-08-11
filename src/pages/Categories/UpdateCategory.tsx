@@ -1,40 +1,40 @@
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate, useParams } from 'react-router-dom'
-import { IProduct } from '../../types/products';
+import { IPcategory } from '../../types/categories';
 import { Button, Form, Input } from 'antd';
 interface IProps {
-    products: IProduct[],
-    onUpdate: (product: IProduct) => void
+    categories: IPcategory[],
+    onUpdate: (category: IPcategory) => void
 }
-const UpdateProductPage = (props: IProps) => {
+const UpdateCategoryPage = (props: IProps) => {
     const { id } = useParams()
     const navigate = useNavigate()
 
-    const [product, setProduct] = useState<IProduct>() // khởi tạo biến state product có kiểu dữ liệu là IProduct
+    const [category, setcategory] = useState<IPcategory>() // khởi tạo biến state product có kiểu dữ liệu là IProduct
     useEffect(() => { // khi props thay đổi thì sẽ chạy useEffect này
-        const currentProduct = props.products.find((product: IProduct) => product.id == Number(id))
+        const currentCategory = props.categories.find((category: IPcategory) => category.id == Number(id))
         // tìm trong mảng props.products có phần tử nào có id trùng với id trên url không
-        setProduct(currentProduct) // nếu có thì set lại giá trị cho biến product
+        setcategory(currentCategory) // nếu có thì set lại giá trị cho biến product
     }, [props])
     useEffect(() => { // khi biến product thay đổi thì sẽ chạy useEffect này
         setFields() // gọi hàm setFields để set lại giá trị cho các input
-    }, [product])
+    }, [category])
     const [form] = Form.useForm();
     // khởi tạo một instance của Form và gán vào biến form
     // Instance của form là một đối tượng được tạo ra bởi Ant Design để thực hiện các chức năng của form trong React
 
     const setFields = () => {// hàm này để set lại giá trị cho các input
         form.setFieldsValue({ // gọi hàm setFieldsValue của instance form để set lại giá trị cho các input dựa vào giá trị của biến product
-            id: product?.id,
-            name: product?.name,
-            price: product?.price
+            id: category?.id,
+            name: category?.name,
+
         })
     }
 
     const onFinish = (values: any) => {
         props.onUpdate(values);
-        navigate('/admin/products')
+        navigate('/admin/categories')
     };
 
     return (
@@ -48,40 +48,23 @@ const UpdateProductPage = (props: IProps) => {
                     label=""
                     name="id"
                     style={{ display: 'none' }} // ẩn input này đi
-                    rules={[{ required: true, message: 'Please input your username!' }]}
+                    rules={[{ required: true, message: 'Please input !' }]}
                 >
                     <Input />
                 </Form.Item>
 
 
                 <Form.Item
-                    label="Product Name"
+                    label="Category Name"
                     name="name"
-                    rules={[{ required: true, message: 'Please input your username!' }]}
+                    rules={[{ required: true, message: 'Please input!' }]}
                 >
                     <Input />
                 </Form.Item>
-
-                <Form.Item
-                    label="Product Price"
-                    name="price"
-                    rules={[{ required: true, message: 'Please input your password!' }]}
-                >
-                    <Input />
-                </Form.Item>
-                <Form.Item
-                    label="Product Description"
-                    name="desc"
-                    rules={[{ required: true, message: 'Please input your Description!' }]}
-                >
-                    <Input />
-                </Form.Item>
-                
-
 
                 <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
                     <Button type="primary" htmlType="submit">
-                        Update Product
+                        Update Category
                     </Button>
                 </Form.Item>
             </Form>
@@ -89,4 +72,4 @@ const UpdateProductPage = (props: IProps) => {
     )
 }
 
-export default UpdateProductPage
+export default UpdateCategoryPage

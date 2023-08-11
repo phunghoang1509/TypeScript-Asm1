@@ -32,12 +32,18 @@ const AdminLayout = () => {
                 }}
             >
                 <div style={{ height: 32, margin: 16, background: 'rgba(255, 255, 255, 0.2)' }} />
-                <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']} >
+                <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']} >
                     <Menu.Item key="1" icon={<UserOutlined />}>
-                        <Link to={'/admin'}>Dashboard</Link>
+                        <Link to={'/admin'}>Home</Link>
                     </Menu.Item>
                     <Menu.Item key="2" icon={<UserOutlined />}>
-                        <Link to={'/admin/products'}>Product Management</Link>
+                        <Link to={'/admin/products'}>Product </Link>
+                    </Menu.Item>
+                    <Menu.Item key="3" icon={<UserOutlined />}>
+                        <Link to={'/admin/categories'}>Category </Link>
+                    </Menu.Item>
+                    <Menu.Item key="4" icon={<UserOutlined />}>
+                        <Link to={'/admin/users'}>User </Link>
                     </Menu.Item>
                 </Menu>
             </Sider>
